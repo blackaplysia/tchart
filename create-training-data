@@ -8,8 +8,8 @@ if [ ! -e ${TRAINING_LOCAL_DIR} ]; then
     mkdir -p ${TRAINING_LOCAL_DIR}
 fi
 
-if [ -e ${TRAINING_DATA_FILE} ]; then
-    rm ${TRAINING_DATA_FILE}
+if [ -e ${TRAINING_LOCAL_DIR}/${TRAINING_DATA_FILE} ]; then
+    rm ${TRAINING_LOCAL_DIR}/${TRAINING_DATA_FILE}
 fi
 
 for f in ${TRAINING_LOCAL_DIR}/${TRAINING_SOURCE_PATTERN}
