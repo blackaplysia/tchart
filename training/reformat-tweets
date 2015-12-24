@@ -1,10 +1,19 @@
 #!/bin/sh
 
-TRAINING_SOURCE_DIR=./local/original
-TRAINING_DATA_FILE=./local/training.csv
+TRAINING_LOCAL_DIR=./local
+TRAINING_SOURCE_DIR=${TRAINING_LOCAL_DIR}/original
+TRAINING_DATA_FILE=${TRAINING_LOCAL_DIR}/training.csv
 
 if [ -e ${TRAINING_DATA_FILE} ]; then
-  rm ${TRAINING_DATA_FILE}
+    rm ${TRAINING_DATA_FILE}
+fi
+
+if [ ! -e ${TRAINING_LOCAL_DIR} ]; then
+    mkdir -p ${TRAINING_LOCAL_DIR}
+fi
+
+if [ ! -e ${TRAINING_SOURCE_DIR} ]; then
+    mkdir -p ${TRAINING_SOURCE_DIR}
 fi
 
 for f in ${TRAINING_SOURCE_DIR}/*.txt;
