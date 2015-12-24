@@ -1,22 +1,18 @@
 #!/bin/sh
 
 TRAINING_LOCAL_DIR=./local
-TRAINING_SOURCE_DIR=${TRAINING_LOCAL_DIR}/original
-TRAINING_DATA_FILE=${TRAINING_LOCAL_DIR}/training.csv
-
-if [ -e ${TRAINING_DATA_FILE} ]; then
-    rm ${TRAINING_DATA_FILE}
-fi
+TRAINING_DATA_FILE=training.csv
+TRAINING_SOURCE_PATTERN=twitter_*.txt
 
 if [ ! -e ${TRAINING_LOCAL_DIR} ]; then
     mkdir -p ${TRAINING_LOCAL_DIR}
 fi
 
-if [ ! -e ${TRAINING_SOURCE_DIR} ]; then
-    mkdir -p ${TRAINING_SOURCE_DIR}
+if [ -e ${TRAINING_DATA_FILE} ]; then
+    rm ${TRAINING_DATA_FILE}
 fi
 
-for f in ${TRAINING_SOURCE_DIR}/*.txt;
+for f in ${TRAINING_LOCAL_DIR}/${TRAINING_SOURCE_PATTERN}
 do
     n=`basename $f .txt`
     cat $f |
@@ -35,5 +31,5 @@ do
         s/[ 　\t]*$//g;
         /^$/d' |
     head -100 |
-    awk "{printf \$0 \",$n\\n\"}" >> ${TRAINING_DATA_FILE}
+    awk "{printf \$0 \",$n\\n\"}" >> ${TRAINING_LOCAL_DIR}/${TRAINING_DATA_FILE}
 done
