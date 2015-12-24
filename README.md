@@ -60,6 +60,10 @@ This application needs six environment variables and you can find the sample in 
 
 ### 5. Start a server
 
+Start a server with app.js .
+
 ```bash
 $ node app.js
 ```
+
+And you can find your career chart by http://localhost:3000/chart/{twitter-screen-name} .
