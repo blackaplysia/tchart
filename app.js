@@ -28,7 +28,6 @@ app.use(function(error, req, res, next) {
     res.render('error', {
         message: error.message,
         status: error.status,
-        stack: error.stack
     });
 });
 
