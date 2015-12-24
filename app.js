@@ -27,7 +27,7 @@ app.use(function(error, req, res, next) {
     res.status(error.status || 500);
     res.render('error', {
         message: error.message,
-        status: error.status,
+        status: error.status
     });
 });
 
