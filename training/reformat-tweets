@@ -1,0 +1,30 @@
+#!/bin/sh
+
+TRAINING_SOURCE_DIR=./local/original
+TRAINING_DATA_FILE=./local/training.csv
+
+if [ -e ${TRAINING_DATA_FILE} ]; then
+  rm ${TRAINING_DATA_FILE}
+fi
+
+for f in ${TRAINING_SOURCE_DIR}/*.txt;
+do
+    n=`basename $f .txt`
+    cat $f |
+    sed '/さんが追加$/d;
+        /をリツイートしました$/d;
+        s/https\?:[A-Za-z0-9./~_&#\-]*//g;
+        s/@[A-Za-z0-9_]*//g;
+        s/#[^ ]*//g;
+        s/さんから$//g;
+        s/RT//g;
+        s/[［【].*[］】]//g;
+        s/%[A-Fa-f0-9]*//g;
+        s/[…「」",]//g;
+        s/\xc2\x91\|\xc2\x92\|\xc2\xa0\|\xe2\x80\x8e//g; # unicode non-breaking space
+        s/^[ 　\t]*//g;
+        s/[ 　\t]*$//g;
+        /^$/d' |
+    head -100 |
+    awk "{printf \$0 \",$n\\n\"}" >> ${TRAINING_DATA_FILE}
+done

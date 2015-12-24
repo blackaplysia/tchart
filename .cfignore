@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+/_*
+/local_*
+/local/*
+/training/_*
+/training/local_*
+/training/local/*

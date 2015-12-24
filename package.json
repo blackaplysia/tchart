@@ -1,0 +1,18 @@
+{
+  "name": "tchart",
+  "version": "0.0.1",
+  "description": "Chart for T* employees",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "path": "*",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "jade": "*",
+    "async": "*",
+    "twitter": "*",
+    "watson-developer-cloud": "*"
+  }
+}
