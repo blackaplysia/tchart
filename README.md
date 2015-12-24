@@ -2,7 +2,7 @@
 
 ## INSTALLATION
 
-### Clone this repository and install by npm
+### 1. Clone this repository and install by npm
 
 ```bash
 $ git clone https://github.com/blackaplysia/tchart.git
@@ -10,15 +10,15 @@ $ cd tchart
 $ npm install # you may belong to sudoer group
 ```
 
-### Create a classifier by IBM Watson Natural Language Classifier (NLC)
+### 2. Create a classifier by IBM Watson Natural Language Classifier (NLC)
 
-1. Enter the root directory and create ./local directory.
-2. Create twitter user timeline data in ./local/twitter_${screen_name}.txt . (cf. twitter search with 'from:screen_name since:YYYY-MM-DD until:YYYY-MM-DD' and scraper for chrome)
-3. Create training data csv into ./local/training.csv .
+* Enter the root directory and create ./local directory.
+* Create twitter user timeline data in ./local/twitter_${screen_name}.txt . (cf. twitter search with 'from:screen_name since:YYYY-MM-DD until:YYYY-MM-DD' and scraper for chrome)
+* Create training data csv into ./local/training.csv .
 ```bash
 $ ./create-training-data
 ```
-4. Create a classifier instance.
+* Create a classifier instance.
 ```bash
 $ cf create-service natural_language_classifier standard tchart
 $ cf create-service-key tchart credentials
@@ -36,7 +36,7 @@ $ curl -s -u "{username}:{password}" -X POST -F training_data=@local/training.cs
 $ curl -s -u "{username}:{password}" https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers/{classifier_id}
 ```
 
-### 4. Get twitter api key
+### 3. Get twitter api key
 
 Get the twitter api key from https://apps.twitter.com/ .
 
@@ -45,7 +45,7 @@ Get the twitter api key from https://apps.twitter.com/ .
 * Access Token
 * Access Token Secret
 
-### 5. Set environment variables
+### 4. Set environment variables
 
 This application needs six environment variables and you can find the sample in ./template_run.sh .
 
@@ -58,7 +58,7 @@ This application needs six environment variables and you can find the sample in 
 |WATSON_NLC_CREDENTIAL|"{WATSON_NLC_USER_HERE}:{WATSON_NLC_PASSWORD_HERE}"|
 |WATSON_NLC_CLASSIFIER|"{WATSON_NLC_CLASSIFIER_ID_HERE}"|
 
-### 6. Start a server
+### 5. Start a server
 
 ```bash
 $ node app.js
