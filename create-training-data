@@ -14,7 +14,7 @@ fi
 
 for f in ${TRAINING_LOCAL_DIR}/${TRAINING_SOURCE_PATTERN}
 do
-    n=`basename $f .txt`
+    n=`basename $f .txt | sed 's/^twitter_//'`
     cat $f |
     sed '/さんが追加$/d;
         /をリツイートしました$/d;
